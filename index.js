@@ -11,7 +11,16 @@ const {connectDB}=require("./db")
 app.use(cors({ origin: 'http://localhost:3000',credentials:true }));
 app.use(bodyParser.json());
 
+const vehicleRoutes=require("./Controller/VehicleController");
+const authRoutes=require("./Controller/authController");
 
+
+
+app.use("/api/auth/",authRoutes);
+
+app.use(verifyAccessToken)
+
+app.use("/api/",vehicleRoutes)
 
 
 connectDB();
