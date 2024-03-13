@@ -11,7 +11,7 @@ const Maps = ({vehicleLocations}:any) => {
   const center = { lat: 0, lng: 0 };
 
   return (
-    <LoadScript googleMapsApiKey="AIzaSyDDinLMpDoIMeR-ZQQ8i-uRCLcyCNZY4ME">
+    <LoadScript googleMapsApiKey="My API Key">
     <GoogleMap
       mapContainerStyle={mapContainerStyle}
       center={center}
