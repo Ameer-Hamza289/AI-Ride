@@ -2,9 +2,11 @@
 // import './App.css'
 import {  useEffect, useState } from 'react';
 import io from 'socket.io-client';
+import Maps from './components/Maps';
+import LeafMaps from './components/LeafMap';
 
 
-interface IVehicle{
+export interface IVehicle{
 name:string 
 registration_number:string 
 deviceId:string 
@@ -19,6 +21,18 @@ function App() {
 
   console.log(vehicles);
   
+  const demoVehicleLocations = [
+    { deviceId: '1', 
+    coordinates:{
+      latitude: 37.7749,
+       longitude: -122.4194
+
+    }
+     }  // San Francisco, CA
+    // { deviceId: '2', latitude: 34.0522, longitude: -118.2437 }, // Los Angeles, CA
+    // { deviceId: '3', latitude: 40.7128, longitude: -74.0060 }, // New York City, NY
+  ];
+
 
   useEffect(() => {
     window.process = {
@@ -61,15 +75,18 @@ console.log(vehicles,"vehicles");
 
   return (
     <>
- <h1>Vehicle Tracking</h1>
+      <h1>Vehicle Tracking</h1>
+      {/* <Maps vehicleLocations={demoVehicleLocations} /> */}
+      <LeafMaps vehicleLocations={demoVehicleLocations}/>
       {/* Render vehicle locations on the map or list */}
-      <ul>
+      {/* <ul>
         {vehicles.map((vehicle) => (
           <li key={vehicle.deviceId}>
             Vehicle ID: {vehicle.deviceId}, Latitude: {vehicle?.coordinates?.latitude}, Longitude: {vehicle?.coordinates?.longitude}
           </li>
         ))}
-      </ul>    </>
+      </ul> */}
+    </>
   )
 }
 
