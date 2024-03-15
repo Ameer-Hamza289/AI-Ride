@@ -28,7 +28,7 @@ const LeafMaps = ({vehicleLocations}:any) => {
       </Popup>
     </Marker>
   </MapContainer> */}
-   <LeafletMap center={[0, 0]} zoom={2} style={{ height: '400px', width: '100%' }} scrollWheelZoom={false}>
+   <LeafletMap center={[0, 0]} zoom={2} style={{  width: '100%' }} scrollWheelZoom={false}>
       {/* <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -37,13 +37,13 @@ const LeafMaps = ({vehicleLocations}:any) => {
       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
-      {vehicleLocations.map((location) => (
-        <Marker key={location.deviceId} position={[location.coordinates?.latitude, location.coordinates?.longitude]}>
+      {/* {vehicleLocations.map((location) => ( */}
+        <Marker key={vehicleLocations.deviceId} position={[vehicleLocations.coordinates?.latitude, vehicleLocations.coordinates?.longitude]}>
           <Popup>
-            Vehicle ID: {location.deviceId}, Latitude: {location.coordinates?.latitude}, Longitude: {location.coordinates?.longitude}
+            Vehicle ID: {vehicleLocations.deviceId}, Latitude: {vehicleLocations.coordinates?.latitude}, Longitude: {vehicleLocations.coordinates?.longitude}
           </Popup>
         </Marker>
-      ))}
+      {/* ))} */}
     </LeafletMap>
   </div>
   )
