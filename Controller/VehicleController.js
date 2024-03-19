@@ -5,10 +5,10 @@ const Vehicle = require('../model/VehicleModel');
 
 
 router.post("/add-vehicle", async (req, res) => {
-  const { userId, name, deviceId, plate_number } = req.body;
-
+  const userId=req.user.userId;
+  const {  name, deviceId, vehicleIdentifier, model } = req.body;
   try {
-    const existingVehicle = await Vehicle.find({plate_number});
+    const existingVehicle = await Vehicle.find({vehicleIdentifier});
     if (existingVehicle) {
       return res.status(400).json({ message: "Vehicle already exists" });
     }
@@ -16,7 +16,8 @@ router.post("/add-vehicle", async (req, res) => {
       userId,
       name,
       deviceId,
-      plate_number,
+      vehicleIdentifier,
+      model
     });
     await newVehicle.save();
     res.status(201).json({ message: "Vehicle added successfully" });
@@ -29,7 +30,6 @@ router.post("/add-vehicle", async (req, res) => {
 
 router.get('/vehicles', async (req, res) => {
   const userId = req.user.userId; // retrieve user ID through auth
-
   try {
     const vehicles = await Vehicle.find({ userId });
     res.status(200).json(vehicles);
